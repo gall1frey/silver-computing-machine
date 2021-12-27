@@ -4,10 +4,14 @@ import os
 import argparse
 
 parser = argparse.ArgumentParser(description='SDR Listener')
-parser.add_argument('-P','--sdr_port',help='PORT to send SDR data to')
+parser.add_argument('-p','--sdr_port',help='PORT to send SDR data to')
+args = parser.parse_args()
 
 HOST = ''
 PORT = 4446
+
+if not args.sdr_port:
+	args.sdr_port = 4444
 
 soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -32,7 +36,8 @@ print("\n\nENTER FREQUENCY IN HERTZ TO CHANGE IT, ENTER 'exit' TO QUIT!\n\n")
 
 
 def tcp_server():
-	os.system('nc -lvpu {} | nc -lvp 1234'.format(args.sdr_port))
+	print('nc -l {} | nc -lvp 1234'.format(args.sdr_port))
+	os.system('nc -l {} | nc -lvp 1234'.format(args.sdr_port))
 
 def change_freq():
 	while True:
