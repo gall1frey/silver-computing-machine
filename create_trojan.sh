@@ -134,7 +134,7 @@ else
 	p2=$payloads_path/exploit_help.cpp
 	$(x86_64-w64-mingw32-g++ $p1 $p2 -Wall -c -g)
  	$(x86_64-w64-mingw32-g++ -static -static-libgcc -static-libstdc++ -o util.exe virus.o exploit_help.o)
-  $(pyinstaller --onefile $payloads_path/win.py)
+  #$(pyinstaller --onefile $payloads_path/win.py)
 
 	echo -e "${dgreen}[*] Done Compiling...${nc}"
 	echo -e "${dgreen}[*] Cleaning up...${nc}"
